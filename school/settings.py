@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'accounts',
+    'school',
+    'branch',
 ]
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
