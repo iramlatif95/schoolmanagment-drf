@@ -40,8 +40,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt.token_blacklist',
     'accounts',
-    'school',
-    'branch',
+    'schol',
+    'classes',
+    'subj',
+    'django_filters',
 ]
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
@@ -135,3 +137,9 @@ REST_FRAMEWORK = {
     )
 }
 
+# filters once we add this then we used it in a views and we dont need to write REST_FRAMEWORK filterbackend
+   
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
+}
