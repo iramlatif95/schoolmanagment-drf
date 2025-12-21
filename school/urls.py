@@ -23,6 +23,11 @@ urlpatterns = [
     
     path('schol/', include('schol.urls')),
     path('classes/', include('classes.urls')),
-    path('subj/', include('subj.urls')),
+    path('subj/', include('subj.urls')), 
+    path('enrol/', include('enrol.urls')), 
+    path('result/', include('result.urls')),
+
+    path('attendance/', include('attendance.urls')), 
+    
 
 ]

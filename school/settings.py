@@ -44,6 +44,12 @@ INSTALLED_APPS = [
     'classes',
     'subj',
     'django_filters',
+    'enrol',
+    'result',
+    'attendance',
+    'fee',
+   
+
 ]
 # Custom user model
 AUTH_USER_MODEL = 'accounts.User'
