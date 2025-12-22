@@ -149,3 +149,21 @@ REST_FRAMEWORK = {
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
+
+REST_FRAMEWORK = {
+    'DEFAULT_THROTTLE_CLASSES': [
+        'rest_framework.throttling.UserRateThrottle',   # authenticated users
+        'rest_framework.throttling.AnonRateThrottle',   # anonymous users
+    ],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': '1000/day',    # authenticated users can make 1000 requests/day
+        'anon': '20/day',      
+    }
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,  # number of items per page
+}
+
+
