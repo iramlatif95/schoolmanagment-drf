@@ -9,6 +9,7 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import BasePermission
 from rest_framework.response import Response
 from rest_framework import viewsets, status
+from rest_framework.permissions import BasePermission
 
 
 class AttendanceViewSet(viewsets.ModelViewSet):
@@ -42,11 +43,22 @@ class AttendanceViewSet(viewsets.ModelViewSet):
 
 
 class IsAdminOrTeacher(BasePermission):
-    
+
     def has_permission(self, request, view):
-        if view.action in ['create', 'update', 'partial_update', 'destroy']:
-            return request.user.role in ['admin', 'teacher']
-        return True  # read
+        
+        if view.action in ['list', 'retrieve']:
+            return True
+        
+       
+        if request.user.role == 'admin':
+            return True
+        
+    
+        if request.user.role == 'teacher':
+            return view.action in ['create', 'update', 'partial_update']
+        
+    
+        return False
     
     def create(self, request, *args, **kwargs):
         student = request.data.get('student')
