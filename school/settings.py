@@ -167,3 +167,12 @@ REST_FRAMEWORK = {
 }
 
 
+# settings.py
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'iramlatif32@gmail.com'  # Your Gmail
+EMAIL_HOST_PASSWORD = 'lxtivbqkqwctyzyz'   # Your App Password (16-character)
+DEFAULT_FROM_EMAIL = 'School Admin <iramlatif32@gmail.com>'
