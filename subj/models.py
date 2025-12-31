@@ -10,8 +10,4 @@ class Subject(models.Model):
     class_obj=models.ForeignKey('classes.Class',on_delete=models.CASCADE,related_name='subjects')
     branch=models.ForeignKey('schol.Branch',on_delete=models.CASCADE,related_name='subjects')
 
-
-
-    
-
 # Create your models here.

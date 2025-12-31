@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'result',
     'attendance',
     'fee',
+    'django_celery_beat',
+
    
 
 ]
@@ -87,12 +89,22 @@ WSGI_APPLICATION = 'school.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+#DATABASES = {
+    #'default': {
+        #'ENGINE': 'django.db.backends.sqlite3',
+        #'NAME': BASE_DIR / 'db.sqlite3',
+    #}
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'SchoolDB',
+        'USER':'postgres',
+        'PASSWORD':'1234',
+        'HOST':'localhost',
     }
 }
+
 
 
 # Password validation
@@ -176,3 +188,18 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'iramlatif32@gmail.com'  # Your Gmail
 EMAIL_HOST_PASSWORD = 'lxtivbqkqwctyzyz'   # Your App Password (16-character)
 DEFAULT_FROM_EMAIL = 'School Admin <iramlatif32@gmail.com>'
+
+
+CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+
+
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'send-fee-reminder-daily': {
+        'task': 'fees.tasks.send_fee_reminders',
+        'schedule': crontab(hour=9, minute=0),  # Daily at 9 AM
+    },
+}
